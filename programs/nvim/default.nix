@@ -1,11 +1,8 @@
 {config, pkgs, ...}:
 
 {
-  programs.neovim = {
-  	enable = true;
-	extraConfig = ''
-		set number relativenumber
-	'';
+  xdg.configFile."nvim" = {
+    source = ./nvim-config;
+    recursive = true;
   };
-
 }
