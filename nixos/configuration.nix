@@ -94,6 +94,8 @@
    	  htop
 	  zsh
 	  git
+	  xorg.xrandr
+	  xorg.libxcvt
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -102,6 +104,11 @@
   programs.gnupg.agent = {
 	  enable = true;
 	  enableSSHSupport = true;
+  };
+
+  programs.neovim = {
+  	enable = true;
+	defaultEditor = true;
   };
 
   # List services that you want to enable:
