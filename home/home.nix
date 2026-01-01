@@ -28,6 +28,8 @@
     hello
     neofetch
     bat
+    kitty
+    eza
     
 
     # # It is sometimes useful to fine-tune packages, for example, by applying

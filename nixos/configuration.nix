@@ -40,6 +40,7 @@
 
   services.xserver = {
   	enable = true;
+	resolutions = [{x=2560; y=1440;}];
   	windowManager.i3 = {
 		enable = true;
         	extraPackages = with pkgs; [
@@ -51,6 +52,14 @@
   };
 
   services.displayManager.defaultSession = "none+i3";
+
+  programs.sway.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true; # Enables xdg-desktop-portal-wlr for screen sharing, etc.
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; # For GTK apps to use the portal
+  };
 
   security.polkit.enable = true;
 
@@ -96,6 +105,7 @@
 	  git
 	  xorg.xrandr
 	  xorg.libxcvt
+	  foot
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

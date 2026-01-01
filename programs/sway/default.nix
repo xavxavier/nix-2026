@@ -6,12 +6,15 @@
 		config = rec {
 			modifier = "Mod4";
 			# Use kitty as default terminal
-			terminal = "kitty"; 
+			terminal = "foot"; 
 			startup = [
 				# Launch Firefox on start
-				{command = "firefox";}
+				{command = "foot";}
 			];
 		};
+		extraConfig = ''
+output Virtual-1 mode 2560x1600@165hz
+		'';
 	};
 
  
