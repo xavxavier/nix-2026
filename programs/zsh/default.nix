@@ -14,8 +14,8 @@
 		"l" = "eza -la";
 		"la" = "eza -la";
 		".." = "cd ..";
-		"nixupdate" = "sudo nixos-rebuild switch --flake ~/.dotfiles/.";
-		"homeupdate" = "home-manager switch --flake ~/.dotfiles/.";
+		"nixupdate" = "nix flake update --flake /home/xavier/.dotfiles && sudo nixos-rebuild switch --flake /home/xavier/.dotfiles/.";
+		"homeupdate" = "nix flake update --flake /home/xavier/.dotfiles && home-manager switch --flake /home/xavier/.dotfiles/.";
 		"vim" = "nvim";
 	};
 
