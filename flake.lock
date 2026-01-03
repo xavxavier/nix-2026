@@ -37,10 +37,27 @@
         "type": "github"
       }
     },
+    "nvim-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767268944,
+        "narHash": "sha256-zOys00zZ5gWD6p7VoPFOoLtgyPM8GfpMfJ2IFis8oik=",
+        "owner": "xavxavier",
+        "repo": "nvim-config-2026",
+        "rev": "a6f30e98165db559a33e82f25a0588ee828813ae",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xavxavier",
+        "repo": "nvim-config-2026",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nvim-src": "nvim-src"
       }
     }
   },

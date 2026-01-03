@@ -7,8 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+      ./hardware-configuration.nix ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -36,8 +35,12 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   };
 
-  # Enable the X11 windowing system.
+  fonts.packages = with pkgs; [
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
+  ];
 
+  # Enable the X11 windowing system.
   services.xserver = {
   	enable = true;
 	resolutions = [{x=2560; y=1440;}];
@@ -63,6 +66,11 @@
 
   security.polkit.enable = true;
 
+  virtualisation.docker = {
+    enable = true;
+  };
+
+
   # Configure keymap in X11
   services.xserver.xkb.layout = "us";
   services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -83,7 +91,7 @@
 
   users.users.xavier = {
 	  isNormalUser = true;
-	  extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+	  extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
 	  shell = pkgs.zsh;
 	  packages = with pkgs; [
 		  tree
@@ -96,16 +104,23 @@
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
 	  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  	  neovim
+    neovim
 	  wget
-   	  alacritty 
-          firefox
-   	  htop
+    alacritty 
+    firefox
+    htop
 	  zsh
 	  git
 	  xorg.xrandr
 	  xorg.libxcvt
 	  foot
+    gcc
+    clang
+    unzip
+    python312
+    python3
+    cifs-utils
+    psmisc
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

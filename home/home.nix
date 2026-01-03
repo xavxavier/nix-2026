@@ -30,6 +30,12 @@
     bat
     kitty
     eza
+    fzf
+    nodejs_20
+    nodePackages.eslint
+    nodePackages.typescript
+    cargo
+    rustc
     
 
     # # It is sometimes useful to fine-tune packages, for example, by applying

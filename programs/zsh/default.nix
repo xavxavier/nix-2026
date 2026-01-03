@@ -9,7 +9,10 @@
 	};
 
 	shellAliases = {
-		"ll" = "ls -l";
+    "ls" = "eza";
+		"ll" = "eza -l";
+		"l" = "eza -la";
+		"la" = "eza -la";
 		".." = "cd ..";
 		"nixupdate" = "sudo nixos-rebuild switch --flake ~/.dotfiles/.";
 		"homeupdate" = "home-manager switch --flake ~/.dotfiles/.";
