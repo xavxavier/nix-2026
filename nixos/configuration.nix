@@ -2,12 +2,18 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -30,9 +36,9 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-	  font = "Lat2-Terminus16";
-	  keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
+    font = "Lat2-Terminus16";
+    keyMap = "us";
+    #   useXkbConfig = true; # use xkb.options in tty.
   };
 
   fonts.packages = with pkgs; [
@@ -42,16 +48,39 @@
 
   # Enable the X11 windowing system.
   services.xserver = {
-  	enable = true;
-	resolutions = [{x=2560; y=1440;}];
-  	windowManager.i3 = {
-		enable = true;
-        	extraPackages = with pkgs; [
-			dmenu
-			i3status
-			i3blocks
-		];
-  	};
+    enable = true;
+    resolutions = [
+      {
+        x = 2560;
+        y = 1440;
+      }
+    ];
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu
+        i3status
+        i3blocks
+      ];
+    };
+  };
+
+  services.picom = {
+    enable = true;
+    fade = true;
+    #    vSync = true;
+    shadow = true;
+    fadeDelta = 4;
+    inactiveOpacity = 0.8;
+    activeOpacity = 1;
+    #    backend = "glx";
+    settings = {
+      blur = {
+        #method = "dual_kawase";
+        #	background = true;
+        strength = 5;
+      };
+    };
   };
 
   services.displayManager.defaultSession = "none+i3";
@@ -70,7 +99,6 @@
     enable = true;
   };
 
-
   # Configure keymap in X11
   services.xserver.xkb.layout = "us";
   services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -83,19 +111,22 @@
   services.pulseaudio.enable = true;
   # OR
   #services.pipewire = {
-	 # enable = true;
-	 # pulse.enable = true;
+  # enable = true;
+  # pulse.enable = true;
   #};
 
   programs.zsh.enable = true;
 
   users.users.xavier = {
-	  isNormalUser = true;
-	  extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
-	  shell = pkgs.zsh;
-	  packages = with pkgs; [
-		  tree
-	  ];
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "docker"
+    ]; # Enable ‘sudo’ for the user.
+    shell = pkgs.zsh;
+    packages = with pkgs; [
+      tree
+    ];
   };
 
   programs.firefox.enable = true;
@@ -103,17 +134,17 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-	  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     neovim
-	  wget
-    alacritty 
+    wget
+    alacritty
     firefox
     htop
-	  zsh
-	  git
-	  xorg.xrandr
-	  xorg.libxcvt
-	  foot
+    zsh
+    git
+    xorg.xrandr
+    xorg.libxcvt
+    foot
     gcc
     clang
     unzip
@@ -121,19 +152,25 @@
     python3
     cifs-utils
     psmisc
+    hyprland
+    picom
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
   programs.gnupg.agent = {
-	  enable = true;
-	  enableSSHSupport = true;
+    enable = true;
+    enableSSHSupport = true;
   };
 
   programs.neovim = {
-  	enable = true;
-	defaultEditor = true;
+    enable = true;
+    defaultEditor = true;
+  };
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
   };
 
   # List services that you want to enable:
@@ -174,10 +211,12 @@
   system.stateVersion = "25.11"; # Did you read the comment?
 
   nix = {
-  	# package = pkgs.nixFlakes;
-  	# extraOptions = "experimental-feaures = nix-command flakes";
-  	settings.experimental-features = ["nix-command" "flakes"];
+    # package = pkgs.nixFlakes;
+    # extraOptions = "experimental-feaures = nix-command flakes";
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
 
 }
-

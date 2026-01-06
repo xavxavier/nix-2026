@@ -5,4 +5,7 @@
   	source = inputs.nvim-src.outPath;
 	recursive = true;
   };
+  home.packages = with pkgs; [
+    nixfmt
+  ];
 }
