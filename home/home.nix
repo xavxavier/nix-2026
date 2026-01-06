@@ -16,6 +16,9 @@
     nodePackages.typescript
     cargo
     rustc
+    unzip
+    python3
+    zoxide
   ];
 
   home.username = "xavier";

@@ -14,9 +14,11 @@
 		"l" = "eza -la";
 		"la" = "eza -la";
 		".." = "cd ..";
-		"nixupdate" = "nix flake update --flake /home/xavier/.dotfiles && sudo nixos-rebuild switch --flake /home/xavier/.dotfiles/.";
-		"homeupdate" = "nix flake update --flake /home/xavier/.dotfiles && home-manager switch --flake /home/xavier/.dotfiles/.";
+    "flakeupdate" = "nix flake update --flake /home/xavier/.dotfiles";
+		"nixupdate" = "sudo nixos-rebuild switch --flake /home/xavier/.dotfiles/.";
+		"homeupdate" = "home-manager switch --flake /home/xavier/.dotfiles/.";
 		"vim" = "nvim";
+    "cd" = "z";
 	};
 
 	oh-my-zsh = {

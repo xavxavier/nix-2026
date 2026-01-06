@@ -65,7 +65,6 @@
     alacritty
     zsh
     hyprland
-    
   ];
 
   programs.zsh.enable = true;
