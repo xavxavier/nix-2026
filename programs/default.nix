@@ -1,8 +1,1 @@
-{
-  imports = [
-    ./zsh
-    ./sway
-    ./nvim
-    ./hyprland
-  ];
-}
+{ imports = [ ./zsh ./sway ./nvim ./hyprland ./scripts ]; }

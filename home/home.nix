@@ -1,16 +1,20 @@
-{config, pkgs, ...}: 
-{
-  imports = [
-    ../programs
-  ];
+{ config, pkgs, ... }: {
+  imports = [ ../programs ];
 
   home.packages = with pkgs; [
-    hello
+    # Terminal Emulators
+    kitty
+    alacritty
+    foot
+
+    # Usefull Commands
     neofetch
     bat
-    kitty
     eza
     fzf
+    zoxide
+
+    # General Programs
     nodejs_20
     nodePackages.eslint
     nodePackages.typescript
@@ -18,16 +22,16 @@
     rustc
     unzip
     python3
-    zoxide
+    nixfmt
+    clang
   ];
 
   home.username = "xavier";
   home.homeDirectory = "/home/xavier";
   programs.git.enable = true;
+  wayland.windowManager.hyprland.enable = true; # enable Hyprland
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
+  home.sessionVariables = { EDITOR = "nvim"; };
 
   home.stateVersion = "25.11";
   programs.home-manager.enable = true;

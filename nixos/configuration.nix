@@ -5,11 +5,12 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
+  imports = [ # Include the results of the hardware scan.
+    ./programs.nix
+    ./services.nix
+    ./nvidia.nix
+    ./hardware-configuration.nix
+  ];
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -22,68 +23,21 @@
   # Set your time zone.
   time.timeZone = "Australia/Melbourne";
 
-  services.xserver = {
-    enable = true;
-    desktopManager.xterm.enable = false;
-    autoRepeatDelay = 200;
-    autoRepeatInterval = 35;
-    windowManager.i3.enable = true;
-  };
-
-  services.displayManager ={
-    defaultSession = "none+i3";
-  };
-  services.printing.enable = true;
+  powerManagement.enable = true;
+  powerManagement.powertop.enable = true;
 
   # services.pulseaudio.enable = true;
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
-
-  services.libinput.enable = true;
 
   users.users.xavier = {
-	  isNormalUser = true;
-	  extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-	  shell = pkgs.zsh;
-	  packages = with pkgs; [
-		  tree
-	  ];
+    isNormalUser = true;
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    shell = pkgs.zsh;
   };
-
-  environment.systemPackages = with pkgs; [
-    vim 
-    wget
-    neovim
-    git
-    killall
-    kitty
-    firefox
-    dmenu
-    i3status
-    alacritty
-    zsh
-    hyprland
-  ];
-
-  programs.zsh.enable = true;
-  programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
-  services.openssh.enable = true;
 
   networking.firewall.enable = false;
+  security.rtkit.enable = true;
 
-  fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.fira-code
-  ];
-
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  system.stateVersion = "25.11"; 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  system.stateVersion = "25.11";
 }
 
