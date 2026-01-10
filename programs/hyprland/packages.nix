@@ -14,5 +14,6 @@
     hypridle
     hyprlock
     hyprpolkitagent
+    waybar
   ];
 }

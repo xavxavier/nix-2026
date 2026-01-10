@@ -11,6 +11,7 @@ in {
     ./hyprpaper.nix
     ./hyprsunset.nix
     ./packages.nix
+    ./waybar.nix
     ./wl-config.nix
   ];
 
@@ -30,6 +31,7 @@ in {
         "hypridle"
         "dbus-update-activation-environment --systemd HYPRLAND_INSTANCE_SIGNATURE"
         "systemctl --user start hyprpolkitagent"
+        "waybar"
       ];
 
       "monitor" = ",preferred,auto,1.33334";
@@ -49,8 +51,8 @@ in {
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
         "QT_QPA_PLATFORM,wayland;xcb"
         "GTK_THEME,Materia-dark"
-        "XCURSOR_SIZE,24"
-        "HYPRCURSOR_SIZE,24"
+        "XCURSOR_SIZE,40"
+        "HYPRCURSOR_SIZE,40"
       ];
       bindel = [
         ", XF86AudioRaiseVolume, exec, ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.0"

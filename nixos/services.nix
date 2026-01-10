@@ -46,4 +46,6 @@
   services.playerctld.enable = true;
   services.upower.enable = true;
   services.openssh.enable = true;
+  services.blueman.enable = true;
+
 }

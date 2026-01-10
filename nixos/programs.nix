@@ -11,7 +11,6 @@
     killall
 
     hyprland
-    firefox
     steam
     gamescope-wsi
 

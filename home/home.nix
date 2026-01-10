@@ -13,6 +13,9 @@
     eza
     fzf
     zoxide
+    htop
+
+    google-chrome
 
     # General Programs
     nodejs_20
