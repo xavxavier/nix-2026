@@ -42,7 +42,12 @@ in {
         vfr = true;
         vrr = 1;
       };
-      input = { touchpad = { natural_scroll = true; }; };
+      input = {
+        touchpad = {
+          natural_scroll = true;
+          scroll_factor = 0.2;
+        };
+      };
       gesture = "3, horizontal, workspace";
       gestures = { "workspace_swipe_touch" = "true"; };
       xwayland = { "force_zero_scaling" = "true"; };
@@ -98,6 +103,7 @@ in {
         "$mod, Space, exec, wofi --show drun"
         "$mod, C, exec, 'wl-copy < /tmp/myfile.txt'"
         "$mod, V, exec, cliphist list | wofi --dmenu --pre-display-cmd 'echo '%s' | cut -f 2' | cliphist decode | wl-copy"
+        "$mod, B, exec, google-chrome-stable"
       ] ++ (
         # workspaces
         # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}

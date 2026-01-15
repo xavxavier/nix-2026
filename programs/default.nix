@@ -1,1 +1,1 @@
-{ imports = [ ./zsh ./sway ./nvim ./hyprland ./scripts ]; }
+{ imports = [ ./zsh ./sway ./nvim ./hyprland ./kitty ./scripts ]; }
